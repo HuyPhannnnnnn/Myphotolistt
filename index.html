@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="todophoto container">
+        <div class="todo1">
+            <h1>My Photo to list</h1>
+            <div>
+                <input type="file" accept="image/*" onchange="loadFile(event)">
+            </div>
+        </div>
+        <div>
+            <ul id="listImage" class="imagelist"></ul>
+        </div>
+    </div>
+    <div class="photo container">
+        <div>
+            <div><img id="img" onclick="element()" src="./image/hinhh2.gif" alt=""></div>
+        </div>
+        <div>
+            <div><img id="imge" onclick="clientInformation()" src="./image/hinh1.gif" alt=""></div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var loadFile = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                console.log(reader)
+                var ul = document.getElementById('listImage')
+                var li = document.createElement('LI')
+                var img = document.createElement('img')
+                img.src = reader.result
+                li.append(img)
+                ul.append(li)
+                // console.log(img)
+                // var output = document.getElementById('output');
+                // output.src = reader.result;
+
+                var a = document.createElement('button')
+                a.append('Xóa')
+                li.append(a)
+                var b = document.createElement('button')
+                b.append('Chỉnh sửa')
+                li.append(b)
+                a.addEventListener('click', function () {
+                    var location = this.parentElement
+                    location.remove()
+                })
+                b.addEventListener('click', function () {
+                    var c = document.createElement('input')
+                    var save = document.createElement('button')
+                    save.append('Lưu')
+                    li.append(c)
+                    li.append(save)
+                    c.setAttribute("type", "file")
+                    c.setAttribute("accept", "image/*")
+                    c.addEventListener('change', function (file, callback) {
+
+                        var readerEdit = new FileReader();
+                        console.log(readerEdit)
+                        readerEdit.onload = function () {
+                            console.log(readerEdit)
+                        }
+                    })
+
+
+
+
+
+                })
+
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+
+
+
+
+
+
+
+        var indexx = 0
+        function clientInformation() {
+            var imgss = ["./image/hinh1.gif", "./image/anh2.jpg", "./image/anh3.jpg"];
+            document.getElementById('imge').src = imgss[index];
+            indexx++;
+            if (indexx == 3) {
+                indexx = 0;
+            }
+
+        }
+        setInterval(clientInformation, 1000);
+
+
+
+        var index = 0
+        function element() {
+            var imgs = ["./image/hinhh2.gif", "./image/anh2.jpg", "./image/anh3.jpg"];
+            document.getElementById('img').src = imgs[index];
+            index++;
+            if (index == 3) {
+                index = 0;
+            }
+
+        }
+        setInterval(element, 1000);
+
+
+    </script>
+</body>
+
+</html>
